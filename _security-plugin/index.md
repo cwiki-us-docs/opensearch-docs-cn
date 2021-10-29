@@ -10,7 +10,7 @@ redirect_from:
 
 # 关于安全插件
 
-OpenSearch has its own security plugin for authentication and access control. The plugin provides numerous features to help you secure your cluster.
+OpenSearch 针对授权和访问控制有自己的安全插件。 The plugin provides numerous features to help you secure your cluster.
 
 The security plugin has several default users, roles, action groups, permissions, and settings for OpenSearch Dashboards that use `kibana` in their names. We will change these names in a future release.
 {: .note }
