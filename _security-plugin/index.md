@@ -8,7 +8,7 @@ redirect_from:
   - /security-plugin/
 ---
 
-# About the security plugin
+# 关于安全插件
 
 OpenSearch has its own security plugin for authentication and access control. The plugin provides numerous features to help you secure your cluster.
 
