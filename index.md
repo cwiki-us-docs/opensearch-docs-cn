@@ -15,7 +15,7 @@ This site contains the technical documentation for [OpenSearch](https://opensear
 
 ---
 
-## Why use OpenSearch?
+## 为什么使用 OpenSearch?
 
 OpenSearch is well-suited to the following use cases:
 
