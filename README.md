@@ -290,21 +290,21 @@ And back to Markdown.
 ```
 
 
-## Code of conduct
+## 编码规范（Code of conduct）
 
-This project has adopted an [Open Source Code of Conduct](https://opensearch.org/codeofconduct.html).
-
-
-## Security
-
-See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
+本项目遵循 [开源项目编码规范（Open Source Code of Conduct）](https://opensearch.org/codeofconduct.html) 中定义的规范。
 
 
-## License
+## 安全特性（Security）
 
-This project is licensed under the Apache-2.0 License.
+请参考 [参与项目（CONTRIBUTING）](CONTRIBUTING.md#security-issue-notifications) 页面中的内容来获得更多信息。
 
 
-## Copyright
+## 许可证（License）
 
-Copyright OpenSearch contributors.
+This project is licensed under the Apache-2.0 License。
+
+
+## 版权（Copyright）
+
+Copyright OpenSearch 贡献者（contributors）。
