@@ -1,30 +1,43 @@
 <img src="https://opensearch.org/assets/img/opensearch-logo-themed.svg" height="64px">
 
-# OpenSearch documentation
+# OpenSearch 文档
 
-This repository contains the documentation for OpenSearch, the search, analytics, and visualization suite with advanced security, alerting, SQL support, automated index management, deep performance analysis, and more. You can find the rendered documentation at [opensearch.org/docs](https://opensearch.org/docs).
+本仓库（repository）中包含有 OpenSearch 的文档, 在 OpenSearch 中提供了高级安全特性，警告，SQL 支持，自动索引管理，深度性能分析等功能。
 
-Community contributions remain essential in keeping this documentation comprehensive, useful, well-organized, and up-to-date.
+### 中文本地化
 
+本仓库的内容是从官方 GitHub 代码库中 Fork 下来后进行编译和修改的。完整编译的简体中文文档，请访问[opensearch.ossez.com](https://opensearch.ossez.com)。
+有关如何对内容进行编译和本地查看的方法，请查看本页面中有关项目本地部署的内容。
 
-## How you can help
+如果你对文档的内容有任何建议和需要修改的地方，请向本仓库中提交 PR，本仓库使用默认的分支为 [docs_cn](https://github.com/cwiki-us-docs/opensearch-docs-cn)，以区别官方使用的分支。
 
-- Do you work on one of the various OpenSearch plugins? Take a look at the documentation for the plugin. Is everything accurate? Will anything change in the near future?
+本文档使用的是 GitHub Pages 功能进行部署的，因此你也可以非常容易的将本文档中内容 Fork 到你的仓库中部署到你的域名下面，如果你在部署上有什么问题的话，请访问 [OSSEZ.COM](https://www.ossez.com/tag/opensearch) 中的内容，并参与讨论。
 
-  Often, engineering teams can keep existing documentation up-to-date with minimal effort, thus freeing up the documentation team to focus on larger projects.
+### 官方文档地址
 
-- Do you have expertise in a particular area of OpenSearch? Cluster sizing? The query DSL? Painless scripting? Aggregations? JVM settings? Take a look at the [current content](https://opensearch.org/docs/opensearch/) and see where you can add value. The [documentation team](#points-of-contact) is happy to help you polish and organize your drafts.
+你可以访问官方的文档地址 [opensearch.org/docs](https://opensearch.org/docs) 来显示完整被渲染后的文档。
 
-- Are you an OpenSearch Dashboards expert? How did you set up your visualizations? Why is a particular dashboard so valuable to your organization? We have [very little](https://opensearch.org/docs/opensearch-dashboards/) on how to use OpenSearch Dashboards, only how to install it.
-
-- Are you a web developer? Do you want to add an optional dark mode to the documentation? A "copy to clipboard" button for our code samples? Other improvements to the design or usability? See [major changes](#major-changes) for information on building the website locally.
-
-- Our [issue tracker](https://github.com/opensearch-project/documentation-website/issues) contains documentation bugs and other content gaps, some of which have colorful labels like "good first issue" and "help wanted."
+社区成员的贡献对保持本文档的完整性，有效性，完整组织和保持最新起到了非常重要的作用。
 
 
-## Points of contact
+## 你可以做什么样的帮助
 
-If you encounter problems or have questions when contributing to the documentation, these people can help:
+- 你在对 OpenSearch 的插件进行开发吗？请查看有关插件的文档。在有关插件的文档中是否所有的内容都是准确的还有什么需要在后续开发中改进的呢？
+
+  通常来说，项目团队将会对已经存在的文档保持必要的最小更新，这样能够让项目团队关注更多关键内容和重要的项目。
+
+- 你是否对 OpenSearch 的特定领域有专业的知识吗？集群大小？查询语言（DSL）？Do you have expertise in a particular area of OpenSearch? Cluster sizing? 无痛脚本（Painless scripting）？聚合（Aggregations）？JVM 设置？请查看 [OpenSearch 当前内容](https://opensearch.ossez.com/) 来了解你是否可以为项目加入一些有价值的内容。 [OpenSearch 文档项目组](#points-of-contact) 非常高兴能够帮助你对内容进行润色和重新组织你的草稿。
+
+- 你是 OpenSearch 面板（Dashboards）的专家吗？你是如何设置你的可视化环境的呢？为什么这个可视化环境对你的项目或者组织来说是非常重要的呢？针对 OpenSearch Dashboards 我们现在只有 [非常有限](https://opensearch.ossez.com/opensearch-dashboards/) 的内容，仅仅显示如何来进行安装。
+
+- 你是一个页面开发工程师（web developer）吗？你是否希望为文档添加一个可选的黑暗模式（dark mode）？针对代码复制提供一个拷贝到剪切板（copy to clipboard）的按钮？或者有关能够增加曝光量的设计或者改进？请参考 [主要修改（major changes）](#major-changes) 页面来获得有关完整本地化构建的相关信息。
+
+- 我们的 [问题跟踪（issue tracker）](https://github.com/opensearch-project/documentation-website/issues) 中包含有文档的缺陷（bug）和其他内容的问题，在这里面将会被使用彩色标签标记为 "good first issue" 和 "help wanted"。
+
+
+## 联系方式
+
+如果你对文档进行贡献有任何问题，请通过链接联系下面的人来获得帮助：
 
 - [aetter](https://github.com/aetter)
 - [ashwinkumar12345](https://github.com/ashwinkumar12345)
@@ -32,7 +45,7 @@ If you encounter problems or have questions when contributing to the documentati
 - [snyder114](https://github.com/snyder114)
 
 
-## How the website works
+## 网站是如何工作的
 
 This repository contains many [Markdown](https://guides.github.com/features/mastering-markdown/) files organized into Jekyll "collections" (e.g. `_search-plugins`, `_opensearch`, etc.). Each Markdown file correlates with one page on the website.
 
