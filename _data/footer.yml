@@ -7,7 +7,7 @@ columns:
         url: 'https://opensearch.org/codeofconduct.html'
       -
         title: 'OpenSearch 中文论坛'
-            url: 'https://www.ossez.com/tag/opensearch'
+        url: 'https://www.ossez.com/tag/opensearch'
       -
         title: '官方论坛'
         url: 'https://discuss.opendistrocommunity.dev/'
@@ -29,7 +29,7 @@ columns:
       #- 
       #  title: 'Documentation'
       #  url: 'https://github.com/opensearch/documentation'
-      - 
+      -
         title: FAQ
         url: '/faq/'
       -
@@ -38,7 +38,7 @@ columns:
       -
         title: 'Trademark Usage Policy'
         url: '/trademark-usage.html'
-      - 
+      -
         title: OpenSearch Disambiguation
         url: '/disambiguation.html'
   -
