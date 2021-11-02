@@ -4,7 +4,7 @@ columns:
     links:
       -
         title: Code of Conduct
-        url: '/codeofconduct.html'
+        url: 'https://opensearch.org/codeofconduct.html'
       -
         title: 'OpenSearch 中文论坛'
             url: 'https://www.ossez.com/tag/opensearch'
