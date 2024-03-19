@@ -7,14 +7,14 @@ columns:
         url: '/codeofconduct.html'
       -
         title: 'OpenSearch 中文论坛'
-        url: 'https://www.ossez.com/tag/opensearch'
+        url: 'https://www.isharkfly.com/tag/opensearch'
       -
         title: '官方论坛'
         url: 'https://discuss.opendistrocommunity.dev/'
 
       -
-        title: '中文文档代码仓库 中文论坛'
-        url: 'https://github.com/cwiki-us-docs/opensearch-docs-cn'
+        title: '中文文档代码仓库'
+        url: 'https://github.com/iSharkFly-Docs/opensearch-docs-cn'
       -
         title: '官方 Github'
         url: 'https://github.com/opensearch-project'
