@@ -11,7 +11,6 @@ columns:
       -
         title: '官方论坛'
         url: 'https://discuss.opendistrocommunity.dev/'
-
       -
         title: '中文文档代码仓库'
         url: 'https://github.com/iSharkFly-Docs/opensearch-docs-cn'
