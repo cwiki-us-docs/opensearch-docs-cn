@@ -19,6 +19,7 @@
 
 社区成员的贡献对保持本文档的完整性，有效性，完整组织和保持最新起到了非常重要的作用。
 
+- Do you work on one of the various OpenSearch plugins? Take a look at the documentation for the plugin. Is everything accurate? Will anything change in the near future?
 
 ## 你可以做什么样的帮助
 
@@ -297,12 +298,12 @@ And back to Markdown.
 
 ## 安全特性（Security）
 
-请参考 [参与项目（CONTRIBUTING）](CONTRIBUTING.md#security-issue-notifications) 页面中的内容来获得更多信息。
+If you discover a potential security issue in this project, we ask that you notify AWS/Amazon Security using our [vulnerability reporting page](http://aws.amazon.com/security/vulnerability-reporting/). Do **not** create a public GitHub issue.
 
 
 ## 许可证（License）
 
-This project is licensed under the Apache-2.0 License。
+This project is licensed under the Apache-2.0 License.
 
 
 ## 版权（Copyright）

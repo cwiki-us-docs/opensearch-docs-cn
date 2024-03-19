@@ -4,13 +4,14 @@ columns:
     links:
       -
         title: Code of Conduct
-        url: 'https://opensearch.org/codeofconduct.html'
+        url: '/codeofconduct.html'
       -
         title: 'OpenSearch 中文论坛'
         url: 'https://www.ossez.com/tag/opensearch'
       -
         title: '官方论坛'
         url: 'https://discuss.opendistrocommunity.dev/'
+
       -
         title: '中文文档代码仓库 中文论坛'
         url: 'https://github.com/cwiki-us-docs/opensearch-docs-cn'
@@ -18,38 +19,53 @@ columns:
         title: '官方 Github'
         url: 'https://github.com/opensearch-project'
       -
-        title: '合作方'
-        url: '/partners/'
+        title: 'Slack'
+        url: '/slack.html'
       -
         title: '社区项目'
         url: '/community_projects'
   -
     title: '资源（Resources）'
     links:
-      #- 
-      #  title: 'Documentation'
-      #  url: 'https://github.com/opensearch/documentation'
       -
+        title: About
+        url: '/about.html'
+      -
+        title: Release Schedule
+        url: '/releases.html'
+      -
+        title: Maintenance Policy
+        url: '/releases.html#maintenance-policy'
+      - 
         title: FAQ
         url: '/faq/'
       -
-        title: 'Brand Guidelines'
-        url: '/brand.html'
+        title: 'Testimonials'
+        url: '/testimonials/'
       -
-        title: 'Trademark Usage Policy'
-        url: '/trademark-usage.html'
+        title: 'Trademark and Brand Policy'
+        url: '/trademark-brand-policy.html'
       -
-        title: OpenSearch Disambiguation
-        url: '/disambiguation.html'
+        title: 'Privacy'
+        url: 'https://aws.amazon.com/privacy/'
   -
-    title: '联系我们（Connect）'
+    title: 'Contact Us'
     links:
-      # -
-      #  title: 'Twitter'
-      #  url: 'https://twitter.com/opensearch_project'
-      #-
-      #  title: 'Facebook'
-      #  url: 'http://www.facebook.com/opensearch'
       -
-        title: 'E-mail'
-        url: 'mailto:opensearch@amazon.com'
+        title: 'Connect'
+        url: '/connect.html'
+      -
+        title: 'Twitter'
+        url: 'https://twitter.com/OpenSearchProj'
+      -
+        title: 'LinkedIn'
+        url: 'https://www.linkedin.com/company/opensearch-project/'
+      -
+        title: 'YouTube'
+        url: 'https://www.youtube.com/c/OpenSearchProject'
+      -
+        title: 'Meetup'
+        url: 'https://www.meetup.com/pro/opensearchproject/'
+      -
+        title: 'Facebook'
+        url: 'https://www.facebook.com/OpenSearchProject/'
