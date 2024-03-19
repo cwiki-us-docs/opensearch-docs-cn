@@ -1,29 +1,35 @@
 columns:
   -
-    title: 'Get Involved'
+    title: '参与项目（Get Involved）'
     links:
       -
         title: Code of Conduct
-        url: '/codeofconduct.html'
+        url: 'https://opensearch.org/codeofconduct.html'
       -
-        title: 'Forums'
+        title: 'OpenSearch 中文论坛'
+        url: 'https://www.ossez.com/tag/opensearch'
+      -
+        title: '官方论坛'
         url: 'https://discuss.opendistrocommunity.dev/'
       -
-        title: 'Github'
+        title: '中文文档代码仓库 中文论坛'
+        url: 'https://github.com/cwiki-us-docs/opensearch-docs-cn'
+      -
+        title: '官方 Github'
         url: 'https://github.com/opensearch-project'
       -
-        title: 'Partners'
+        title: '合作方'
         url: '/partners/'
       -
-        title: 'Community Projects'
+        title: '社区项目'
         url: '/community_projects'
   -
-    title: 'Resources'
+    title: '资源（Resources）'
     links:
       #- 
       #  title: 'Documentation'
       #  url: 'https://github.com/opensearch/documentation'
-      - 
+      -
         title: FAQ
         url: '/faq/'
       -
@@ -32,11 +38,11 @@ columns:
       -
         title: 'Trademark Usage Policy'
         url: '/trademark-usage.html'
-      - 
+      -
         title: OpenSearch Disambiguation
         url: '/disambiguation.html'
   -
-    title: 'Connect'
+    title: '联系我们（Connect）'
     links:
       # -
       #  title: 'Twitter'
