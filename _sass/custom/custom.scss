@@ -2,6 +2,7 @@
 @import "../../assets/fonts/open-sans-condensed/webfont.css";
 @import "../../assets/fonts/noto-serif/webfont.css";
 @import "../../assets/fonts/fira-mono/webfont.css";
+@import "../color_schemes/opensearch.scss";
 
 // Font Family Mixins
 @mixin serif {
@@ -35,21 +36,8 @@
   }
 }
 
-// Additional variables
-$table-border-color: $grey-lt-300;
-$toc-width: 232px !default;
-
-// Replaces xl size
-$media-queries: (
-  xs: 320px,
-  sm: 500px,
-  md: $content-width,
-  lg: $content-width + $nav-width,
-  xl: $content-width + $nav-width + $toc-width
-);
-
 body {
-  @include serif;
+  @include sans-serif;
 }
 
 code {
@@ -60,11 +48,38 @@ code {
 }
 
 .site-nav {
-  padding-top: 1rem;
+  padding-top: 0;
+  position: sticky;
+  top: 0;
+  max-height: 100vh;
+  overflow-x: hidden;
+  min-width: 14rem;
+  padding-right: 1px;
+  padding-left: 1px;
+  padding-bottom: 1px;
+}
+
+nav#site-nav > .nav-list:nth-of-type(1) {
+  padding-top: 2px;
+}
+
+.nav-list {
+  margin-top: 1px;
 }
 
 .nav-category {
   text-align: start;
+  display: block;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.nav-list-expander {
+  margin-right: 0.5rem;
+}
+
+.nav-shadow {
+  box-shadow: 0 6px 4px -4px $grey-lt-300;
 }
 
 .main-content {
@@ -121,15 +136,45 @@ code {
   left: 0.25rem;
 }
 
+.panel {
+  border-radius: $border-radius;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.td-custom {
+  @extend td;
+  
+  &:first-of-type {
+    border-left: $border $border-color;
+  }
+}
+
 img {
-  padding: 1rem 0;
+  @extend .panel;
+}
+
+.img-centered {
+  max-width: 100%;
+  margin: 0 auto;
+  display: block;
+}
+
+.no-border {
+  border: none;
+  box-shadow: none;
+}
+
+.inline-icon {
+  @extend .no-border;
+  height: 1.2rem;
+  vertical-align: middle;
 }
 
 .img-border {
   border: 1px solid $grey-lt-300;
 }
 
-// Note, tip, and warning blocks
+// Note, tip, important, and warning blocks
 %callout {
   border: 1px solid $grey-lt-300;
   border-radius: 5px;
@@ -148,9 +193,35 @@ img {
   border-left: 5px solid $green-100;
 }
 
+.important {
+  @extend %callout;
+  border-left: 5px solid $yellow-000;
+}
+
 .warning {
   @extend %callout;
   border-left: 5px solid $red-100;
+}
+
+@mixin version-warning ( $version: 'latest' ){
+  @extend %callout, .panel;
+  font-weight: 600;
+  @if $version == 'unsupported' {
+    border-left: 5px solid $red-100;
+    background-color: mix(white, $red-100, 80%);
+  }
+  @else if $version == 'supported' {
+    border-left: 5px solid $yellow-000;
+    background-color: mix(white, $yellow-000, 80%);
+  }
+}
+
+.supported-version-warning {
+  @include version-warning('supported');
+}
+
+.unsupported-version-warning {
+  @include version-warning('unsupported');
 }
 
 // Labels
@@ -193,6 +264,178 @@ img {
   @include btn-color($white, $green-300);
 }
 
+@mixin btn-default {
+  color: $blue-100;
+  background-color: white;
+  font-size: 0.9rem;
+  font-weight: 510;
+  border-width: 1px; 
+  border-style: solid;
+  border-radius: 5px;
+  box-shadow: 1px 1px $grey-lt-300;
+  cursor: pointer;
+}
+
+@mixin elt-disabled {
+  color: mix(black, $base-button-color, 40%);
+  border-color: $base-button-color;
+  cursor: default;
+  background-color: mix(white, $base-button-color, 50%);
+  box-shadow: none;
+}
+
+.btn-general {
+  @include btn-default;
+  border-color: $blue-100;
+  padding: 0.5rem 1rem;
+  margin-left: 0.4rem;
+  margin-right: 0.4rem;
+  &:hover {
+    &:not([disabled]) {
+      background-color: $blue-lt-100;
+      box-shadow: 1px 2px 4px $grey-lt-300;
+      transform: translateY(-1px);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+  &:disabled {
+    @include elt-disabled;
+  }
+}
+
+// Back to top button
+.top-link {
+  display: block;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: $blue-dk-100;
+  background-color: white;
+  border-width:2px; 
+  border-style:solid;
+  border-color: $grey-lt-300;
+  border-radius: 10px;
+  box-shadow: 1px 1px 1px $grey-lt-300;
+  padding: 0.2rem;
+  position: fixed;
+  bottom: 30px;
+  right: 16px;
+  z-index: 999;
+
+  svg {
+    transform: rotate(-90deg);
+  }
+  &:hover {
+    border-color: $blue-dk-100;
+    background-color: $sidebar-color; 
+    color: $blue-100;
+  }
+}
+
+.copy-button-wrap {
+  background-color: $sidebar-color;
+  padding: 0.25rem 2rem 0.5rem 2rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  justify-content: flex-end; 
+}
+ 
+// Copy code button
+.copy-button {
+  @extend .btn-general;
+  background-color: $sidebar-color;
+  display: inline;
+}
+
+// Copy as curl button
+.copy-curl-button {
+  @extend .copy-button;
+}
+
+.send-button {
+  @extend .btn-general;
+}
+
+// Feedback question
+.feedback-header {
+  @extend %toc-font;
+  letter-spacing: 0.08em;
+  margin: 1rem 0;
+}
+
+.feedback-text-header {
+  text-align: left;
+  font-size: 0.8rem;
+  font-weight: 500; 
+  margin-top: 1rem;
+}
+
+.feedback-radio-div {
+  display: flex;
+  justify-content: space-between;  
+}
+
+// hide the browser-rendered radio button 
+.feedback-radio-div input[type="radio"] {
+  display: none;
+} 
+
+.feedback-radio {
+  @include btn-default;
+  border-color: $grey-lt-100;
+  margin: 0;
+  padding: 0.5rem 1.2rem;
+  border-color: $grey-lt-100;
+  &:hover {
+    &:not([disabled]) {    
+      background-color: mix(white, $blue-lt-000, 50%);
+      box-shadow: 1px 2px 4px $grey-lt-300;
+    }
+  }
+}
+
+.feedback-radio-div input[type="radio"]:checked+label {
+  border-color: $blue-100;
+  background-color: $blue-lt-100;
+  box-shadow: inset 1px 1px 3px $blue-dk-100;
+}
+
+.feedback-radio-div input[type="radio"]:disabled+label {
+  @include elt-disabled;
+}
+
+// Feedback text area
+textarea {
+  @extend .panel, .img-border;
+  width: 100%;
+  height: 5rem;
+  color: $grey-dk-300;
+  background-color: mix(white, $grey-lt-000, 50%);
+  font-size: 0.9rem;
+  resize: vertical;
+  &:focus {
+    outline: none;
+    border: 1px solid $blue-100;
+    background-color: white;
+  }
+  &:disabled {
+    @include elt-disabled;
+  }
+}
+
+.num-chars {
+  margin-bottom: 0.5rem;
+  text-align: left;
+  color: mix(white, $grey-dk-300, 40%);
+}
+
+.hidden {
+  visibility: hidden;
+}
+
 // Tables
 th,
 td {
@@ -229,27 +472,36 @@ p.label {
   }
 }
 
-
 // Modifies margins in xl layout to support TOC
 .side-bar {
-  @include mq(xl) {
-    width: calc((100% - #{$nav-width + $content-width + $toc-width}) / 2 + #{$nav-width});
-    min-width: $nav-width;
+  background-color: $sidebar-color;
+  @include mq(lg) {
+    width: $nav-width;
   }
 }
 
 .main {
+  flex-grow: 1;
+
+  @include mq(lg) {
+    max-width: calc(100% - #{$nav-width + $top-button-margin});
+  }
+
   @include mq(xl) {
-    margin-left: calc((100% - #{$nav-width + $content-width + $toc-width}) / 2 + #{$nav-width});
+    max-width: calc(min(#{$max-content-width + $toc-width + $top-button-margin}, calc(100% - (#{$nav-width + $top-button-margin}))));
   }
 }
 
-// Adds TOC to righthand side in xl layout
+// Adds TOC to right hand side in xl layout
 .main-content-wrap {
-  max-width: 100%;
+  width: 100%;
+
+  @include mq(xl) {
+    width: calc(100% - #{$toc-width});
+  }
 }
+
 .toc-wrap {
-  width: 0;
   display: none;
 
   @include mq(xl) {
@@ -257,45 +509,70 @@ p.label {
     padding: 2rem 0;
   }
 }
-.toc {
-  display: none;
 
+.sticky-wrap {
   @include mq(xl) {
     z-index: 1;
-    display: block;
     position: sticky;
     top: 2rem;
     width: $toc-width;
+  }
+}
+
+.toc {
+  @include mq(xl) {
     max-height: calc(100vh - 4rem);
     overflow: auto;
   }
 }
 
+%toc-font {
+  @include heading-sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 14px !important;
+}
+
 .toc-list {
   &:before {
     content: "On this page";
-    // Basically duplicates h4 styling
-    font-size: 12px;
-    font-weight: 300;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: $grey-dk-300;
-    line-height: 1.8;
+    @extend %toc-font;
   }
   border: 1px solid $border-color;
   font-size: 14px;
   list-style-type: none;
   background-color: $sidebar-color;
-  padding: $sp-6 $sp-4;
-  margin-left: $sp-6;
-  margin-right: 0;
-  margin-bottom: 0;
+  padding: 2rem 1.5rem 1rem 1.5rem;
+  margin: 0 3rem 0 1rem;
   overflow: auto;
 }
 
 .toc-item {
-  padding-top: .25rem;
-  padding-bottom: .25rem;
+  padding: .1rem 0;
+  line-height: 1.3;
+  margin: 0.35rem 0;
+  ul {
+    list-style-type: none; 
+    padding-left: 0.5rem;
+    > li {
+      font-size: 13.5px;
+    }
+  }
+}
+
+.div-feedback {
+  @extend .table-wrapper;
+  width: calc(#{$toc-width} - 4rem);
+  text-align: center;
+  margin-top: 3rem;
+  margin-left: $sp-4;
+  margin-right: $sp-8;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: block;
 }
 
 /* Website Header & Footer */
@@ -395,7 +672,7 @@ html {
 }
 
 body {
-  @include serif;
+  @include sans-serif;
   @include font-size(16);
   background: $background-lightest;
   color: $text;
@@ -407,11 +684,6 @@ body {
   [role="complementary"] {
     @include sans-serif; // reverse font style on sidebar and secondary areas
   }
-
-  // don't activate mobile styles for larger screens
-  @include mq(md) {
-    min-width: 768px;
-  }
 }
 
 main {
@@ -420,9 +692,18 @@ main {
   align-content: stretch;
   height: 100%;
   position: relative;
+  justify-content: center;
+
+  @include mq(lg) {
+    background: linear-gradient(to right, $sidebar-color $nav-width, transparent $nav-width); 
+  }
+
+  @include mq(xl) {
+    background: linear-gradient(to right, $sidebar-color calc((100% - #{$nav-width + $max-content-width }) / 2 + 2 * #{$top-button-margin} ), transparent calc((100% - #{$nav-width + $max-content-width }) / 2 + 2 * #{$top-button-margin} ));
+  }
 
   @include mq(md) {
-    padding-top: calc(4rem + 9px);
+    padding-top: 0;
   }
 
   .side-bar {
@@ -445,6 +726,10 @@ main {
 
 .container {
   box-sizing: content-box;
+
+  @include mq(xs) {
+    padding: 0 calc(#{$top-button-margin} + 1rem);
+  }
 
   @include mq(md) {
     margin: 0 auto;
@@ -484,7 +769,7 @@ main {
   -moz-osx-font-smoothing: auto;
 }
 
-[role="banner"] {
+[role="banner"]:not(#top) {
   // Includes global navigation, logo, and tagline at top of document
   @include clearfix;
   background: $accent-dark;
@@ -499,419 +784,6 @@ main {
       position: relative;
     }
   }
-
-  .meta {
-    @include font-size(13);
-    color: $attention;
-    font-weight: 700;
-    width: auto;
-    float: left;
-    margin: 8px 0 0 10px;
-    display: none;
-
-    @include respond-min(1150px) {
-      float: left;
-      width: 200px;
-      display: block;
-    }
-
-
-  }
-
-
-  .logo {
-    @include font-size(40);
-    @include sans-serif;
-    /*background: url(../img/logo-search.png) 0 0 no-repeat;*/
-    color: $background-lightest;
-    display: block;
-    float: left;
-    font-weight: 700;
-    margin: 10px;
-    overflow: hidden;
-    text-decoration: none;
-    text-indent: 100%;
-    width: 170px;
-    height: 36px;
-    position: relative;
-    svg {
-      position: absolute;
-      top: 1px;
-      left: 1px
-    }
-    .mdzr-svg & { // deliver svg logo if applicable
-      /*background: url(../img/opensearch-logo-monochrome.svg) center center no-repeat;*/
-    }
-
-    @include mq(md) {
-      margin-left: 0;
-    }
-  }
-
-  .menu-button {
-    @include font-size(20);
-    background: $accent-dark;
-    border-radius: 23px;
-    color: $background-lightest;
-    cursor: pointer;
-    display: block;
-    float: right;
-    height: 45px;
-    line-height: 48px;
-    margin: 4px 10px;
-    text-align: center;
-    text-decoration: none;
-    width: 45px;
-
-    @include mq(md) {
-      display: none;
-    }
-
-    &:active {
-      color: $attention;
-    }
-
-    span {
-      @include visuallyhidden;
-    }
-
-    &.active {
-      opacity: 0.5;
-
-      & ~ .nav-menu-on {
-        max-height: 500px;
-      }
-    }
-  }
-
-  .nav-menu-on {
-    max-height: 0;
-    overflow: hidden;
-
-    -webkit-transition: all 0.3s ease-out;
-    transition: all 0.3s ease-out;
-
-    @include mq(md) {
-      // turn off animations if on a desktop width
-      max-height: none;
-
-      -webkit-transition: none;
-      transition: none;
-    }
-  }
-
-  [role="navigation"] {
-    background: $accent-dark;
-
-    width: 100%;
-
-    @include mq(md) {
-      width: auto;
-      float: right;
-    }
-
-    ul {
-      margin: 10px 0 0;
-      padding: 0;
-
-      @include mq(md) {
-        margin: 0;
-      }
-    }
-
-    li {
-      @include sans-serif;
-      @include font-size(13);
-      display: block;
-      font-weight: 700;
-      line-height: 16px;
-      text-align: left;
-      text-transform: uppercase;
-      margin: 0 10px;
-
-      @include mq(md) {
-        margin: 0;
-        border: 0;
-        float: left;
-        text-align: left;
-      }
-
-      &.active a {
-        color: $attention;
-      }
-    }
-
-    a {
-      color: $background-lightest;
-      display: block;
-      @include mq(md) {
-        padding: 20px 0px;
-      }
-      text-decoration: none;
-      background: none;
-
-      &:active, &:hover {
-        color: $highlight;
-      }
-    }
-
-    .nav-primary {
-      @include mq(md) {
-        position: absolute;
-        right: 0;
-        top: 45px;
-      }
-    }
-  }
-}
-
-[role="banner"] [role="navigation"] {
-  margin-top: 17px;
-
-  li {
-    color: $attention;
-    text-transform: none;
-    margin-right: 0.5em;
-
-  }
-  li a {
-    display: inline;
-    color: white;
-  }
-  li a.in-category {
-    color: $attention;
-  }
-
-  li + li:before {
-    content: "·";
-    color: $text-light;
-    display: inline-block;
-    margin-right: 0.25em;
-  }
-}
-
-[role="contentinfo"] {
-  // Global Footer at bottom of page
-  @include clearfix;
-  @include sans-serif;
-  position: relative;
-  background: $attention;
-  clear: both;
-  margin-top: 0px;
-
-  & * {
-    box-sizing: content-box;
-  }
-
-  .container {
-    overflow: hidden;
-  }
-
-  .subfooter {
-    @include clearfix;
-    padding: 0 10px;
-
-    @include mq(md) {
-      padding: 0;
-    }
-
-    .col {
-      &:first-child {
-        h2 {
-          border-top: 0;
-        }
-      }
-      @include mq(md) {
-        float: left;
-        margin-bottom: -999px;
-        padding: 0 3% 999px 0;
-        width: 23%;
-      }
-
-      &:first-child {
-        margin-left: 0;
-        padding-left: 0;
-      }
-      &.last-child {
-        margin-right: 0;
-        padding-right: 0;
-      }
-    }
-
-  }
-
-  h2 {
-    @include heading-sans-serif;
-    @include font-size(16, true);
-    border-top: 1px solid $line;
-    color: $background-lightest;
-    font-weight: 700;
-    margin: 20px 0 .83em 0;
-    padding: 30px 0 10px;
-    line-height: 1.6;
-
-    @include mq(md) {
-      border: none;
-      margin-top: 0;
-    }
-  }
-
-  ul {
-    @include font-size(14);
-    font-weight: 400;
-    list-style: none;
-    margin: 15px 0 0 0;
-    padding: 0 0 30px;
-
-    li {
-      margin: 10px 0 0;
-      padding: 0;
-    }
-
-    a {
-      color: $white;
-      text-decoration: none;
-      background: none;
-
-      &:hover,
-      &:active,
-      &:focus {
-        text-decoration: underline;
-        background: none;
-      }
-    }
-  }
-
-  .footer {
-    background: $accent-dark;
-    margin-top: 20px;
-    padding: 10px 0 30px;
-    color: $white;
-    a {
-      color: $accent-light;
-      background: none;
-      text-decoration: underline;
-
-      &:hover,
-      &:active,
-      &:focus {
-        text-decoration: underline;
-        background: none;
-      }
-    }
-    svg {
-      float: left;
-      height: 50px;
-      padding-top: 40px;
-      padding-right: 30px;
-      color: $accent-light;
-    }
-    .copyright {
-      float: left;
-      @include font-size(12);
-      margin: 20px 0 0 10px;
-      @include mq(md) {
-        max-width: 80%;
-        padding-top: 30px;
-        margin: 0;
-      }
-    }
-    .logo {
-      margin-right: 0;
-      margin-top: 28px;
-      .mdzr-svg & {
-        background-position: left center;
-        margin-right: 0;
-        margin-top: 20px;
-      }
-    }
-  }
-
-  .logo {
-    @include font-size(40);
-    @include sans-serif;
-    color: $accent-dark;
-    display: block;
-    font-weight: 700;
-    height: 50px;
-    margin: 10px;
-    overflow: hidden;
-    text-decoration: none;
-    text-indent: 100%;
-    width: 142px;
-    @include mq(md) {
-      float: left;
-      margin: 20px 90px 0 0;
-    }
-  }
-
-  .thanks {
-    @include font-size(12);
-    color: $attention-dark;
-    margin: 0;
-    padding: 0;
-    @include mq(md) {
-      border: none;
-    }
-
-    li {
-      @include clearfix;
-      margin: 0;
-      padding: 17px 10px 11px;
-      display: block;
-      clear: both;
-      @include mq(md) {
-        background: none;
-        float: left;
-        clear: none;
-        padding: 0 3% 0 0;
-        width: 30%;
-
-        &.design {
-
-          span.ampersand, a {
-            display: inline-block;
-            vertical-align: top;
-            &.threespot {
-              clear: both;
-            }
-
-            &.ampersand {
-              position: relative;
-              top: 6px;
-              margin: 0 6px;
-              line-height: 36px;
-            }
-          }
-        }
-      }
-
-      span.ampersand {
-        line-height: 24px;
-      }
-    }
-
-    span {
-      display: block;
-      height: 24px;
-      line-height: 36px;
-      padding-right: 12px;
-      white-space: nowrap;
-    }
-
-    a {
-      display: block;
-      height: 33px;
-      overflow: hidden;
-      text-indent: -200px;
-      width: 94px;
-
-      @include mq(md) {
-        clear: both;
-        margin-top: 5px;
-      }
-    }
-  }
 }
 
 .visuallyhidden {
@@ -921,29 +793,21 @@ main {
   @include clearfix;
 }
 
-@media screen and (max-width: 799px) {
-  [role="banner"] .nav-menu-on .small-nav {
-
-    li {
-      line-height: 1.5em;
-      font-size: 1em;
-    }
-    li + li:before {
-      display: none;
-    }
-  }
-
-  .icon-reorder {
-    display: inline-block;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Cpath d='M96 20v-8c0-1.1-.4-2-1.2-2.8S93.1 8 92 8H4c-1.1 0-2 .4-2.8 1.2S0 10.9 0 12v8c0 1.1.4 2 1.2 2.8S2.9 24 4 24h88c1.1 0 2-.4 2.8-1.2S96 21.1 96 20zm0 32v-8c0-1.1-.4-2-1.2-2.8S93.1 40 92 40H4c-1.1 0-2 .4-2.8 1.2S0 42.9 0 44v8c0 1.1.4 2 1.2 2.8S2.9 56 4 56h88c1.1 0 2-.4 2.8-1.2S96 53.1 96 52zm0 32v-8c0-1.1-.4-2-1.2-2.8S93.1 72 92 72H4c-1.1 0-2 .4-2.8 1.2S0 74.9 0 76v8c0 1.1.4 2 1.2 2.8S2.9 88 4 88h88c1.1 0 2-.4 2.8-1.2S96 85.1 96 84z' fill='%23fff'/%3E%3C/svg%3E") center / contain no-repeat;
-    width: 17px;
-    vertical-align: middle;
-    margin-bottom: 6px;
-  }
-
+@media screen and (max-width: ($content-width - 1)) {
   main {
     flex-flow: column nowrap;
   }
+}
+
+.icon-reorder {
+  display: inline-block;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Cpath d='M96 20v-8c0-1.1-.4-2-1.2-2.8S93.1 8 92 8H4c-1.1 0-2 .4-2.8 1.2S0 10.9 0 12v8c0 1.1.4 2 1.2 2.8S2.9 24 4 24h88c1.1 0 2-.4 2.8-1.2S96 21.1 96 20zm0 32v-8c0-1.1-.4-2-1.2-2.8S93.1 40 92 40H4c-1.1 0-2 .4-2.8 1.2S0 42.9 0 44v8c0 1.1.4 2 1.2 2.8S2.9 56 4 56h88c1.1 0 2-.4 2.8-1.2S96 53.1 96 52zm0 32v-8c0-1.1-.4-2-1.2-2.8S93.1 72 92 72H4c-1.1 0-2 .4-2.8 1.2S0 74.9 0 76v8c0 1.1.4 2 1.2 2.8S2.9 88 4 88h88c1.1 0 2-.4 2.8-1.2S96 85.1 96 84z' fill='%23fff'/%3E%3C/svg%3E") center / contain no-repeat;
+  width: 17px;
+  vertical-align: middle;
+  margin-bottom: 6px;
+}
+.icon-remove:before, .icon-close:before, .icon-times:before {
+  content: "\f00d";
 }
 
 .copy-banner {
@@ -1015,20 +879,6 @@ main {
   }
 }
 
-.search-active {
-  .main {
-    position: relative !important;
-  }
-
-  .search-results {
-    @include mq(md) {
-      right: 0;
-      left: auto;
-
-      max-height: calc(100vh - 200% - 60px) !important;
-    }
-  }
-}
 
 .site-header {
   background: #D9E1E2;
@@ -1077,10 +927,7 @@ main {
 }
 
 .site-nav.nav-open {
-  padding-top: .5rem;
-  @include mq(md) {
-    padding-top: 2rem;
-  }
+  padding-top: 0;
 }
 
 .label {
@@ -1119,14 +966,122 @@ main {
 
 .version-wrapper {
   text-align: center;
-  margin-bottom: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 9999999;
+  background-color: $sidebar-color;
+  border-bottom: 1px solid #eeebee;
 }
 
 version-selector {
   z-index: 1;
   font-size: .9rem;
-
+  margin: 0.5rem 3px 1rem 3px;
   --normal-bg: linear-gradient(#{lighten($blue-300, 5%)}, #{darken($blue-300, 2%)});
   --hover-bg: linear-gradient(#{lighten($blue-300, 2%)}, #{darken($blue-300, 4%)});
   --link-color: #{$blue-300};
 }
+
+body {
+  padding-bottom: 0;
+}
+
+#top { 
+  a:not([class]) {
+    background-image: none;
+  }
+}
+.bottom-contentinfo--wrapper {
+  box-sizing: content-box;
+  & * {
+    box-sizing: content-box;
+  }
+  a:not([class]) {
+    background-image: none;
+  }
+  svg {
+    box-sizing: content-box;
+  }
+  h4 {
+    font-size: 15px !important;
+  }
+}
+
+.back-link {
+  text-align: start;
+  display: block;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  @include mq(md) {
+    padding: 0.5rem 2rem;
+  }
+}
+
+.site-category {
+  @extend .back-link;
+  padding-top: 1.5rem;
+  padding-bottom: 0.5rem;
+  margin-top: 0;
+  font-size: 0.8rem;
+  color: $blue-dk-300;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-bottom: 1px solid #eeebee;
+}
+
+@mixin body-text($color: #000) {
+  color: $color;
+  font-family: 'Open Sans';
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 48px;
+}
+
+@mixin gradient-deep-blue-sea {
+  background: linear-gradient(180deg, #016BA7 0%, #011C2D 97.92%);
+}
+
+@mixin header-level3($color: $primary-open-sky-s1) {
+  color: $color;
+  font-family: 'Open Sans';
+  font-size: 21px;
+  font-style: normal;
+  line-height: 36px;
+  font-weight: 700;
+}
+
+@mixin header-level4($color: $primary-open-sky-s3) {
+  color: $color;
+  font-family: 'Open Sans';
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 4.5px;
+  text-transform: uppercase;
+}
+
+@mixin header-level5($color: $primary-open-sky-s3) {
+  color: $color;
+  font-family: 'Open Sans';
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px; 
+}
+
+@mixin header-level6($color: $primary-open-sky-s2) {
+  color: $color;
+  font-family: 'Open Sans';
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+@import "../font-awesome.scss";
+@import "../_navigation-header.scss";
+@import "../footer.scss";
+@import "../_home.scss";
