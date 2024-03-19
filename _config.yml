@@ -1,9 +1,8 @@
 title: OpenSearch Documentation
 description: >- # this means to ignore newlines until "baseurl:"
   Documentation for OpenSearch, the Apache 2.0 search, analytics, and visualization suite with advanced security, alerting, SQL support, automated index management, deep performance analysis, and more.
-# baseurl: "/docs/latest" # the subpath of your site, e.g. /blog
-baseurl: ""
-url: "https://opensearch.ossez.com" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/docs/latest" # the subpath of your site, e.g. /blog
+url: "https://opensearch.isharkfly.com" # the base hostname & protocol for your site, e.g. http://example.com
 permalink: /:path/
 
 opensearch_version: '2.12.0'
@@ -281,7 +280,7 @@ search:
 
 # Google Analytics Tracking (optional)
 # e.g, UA-1234567-89
-ga_tracking: GTM-W3NL9V
+ga_tracking: G-BQV14XK08F
 
 # Disable the just-the-docs theme anchor links in favor of our custom ones
 # See _includes/head_custom.html
